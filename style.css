@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+:root {
+    /* variables */
+    --cg-black: rgb(30, 32, 32);
+    --cg-blue: rgb(36, 94, 255);
+    --cg-grey: rgb(243, 243, 243);
+    --cg-white: rgb(255, 255, 255);
+    --cg-bone: #f7f4ef
+
+  }
+  
+  html {
+    height: 100%;
+  }
+  
+  body {
+    background: var(--cg-bone);
+    position: relative;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-family: "Titillium Web", sans-serif;
+  }
+  
+  /* CSS for navigation */
+  
+  .navbar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 7%;
+    z-index: 100;
+    background-color: var(--cg-bone);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    
+    box-shadow: 0px 5px 5px black;
+    box-shadow: 0px 1px 10px black;
+
+  
+    /* background-color: var(--cg-black); */
+    /* color: var(--cg-white); */
+    padding: 0px 0px;
+  
+    /* Debug border */
+    /* border: solid red; */
+  }
+  
+  .nav-list {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    right: 30px;
+    list-style: none;
+  
+    /* Debug border */
+    /* border: solid blue; */
+  }
+  
+  .navbar a {
+    color: var(--cg-black);
+    font-weight: bold;
+    margin: 0 12px;
+    text-decoration: none;
+    letter-spacing: 2px;
+  
+    font-family: "Titillium Web", sans-serif;
+  }
+  
+  .navbar a:hover {
+    color: var(--cg-blue);
+    text-decoration: underline;
+  }
+  
+  .navbar a:active {
+    color: var(--cg-blue);
+  }
+  
+  .logo {
+    margin-left: 3%;
+    font-family: "Titillium Web", sans-serif;
+  }
+  
+  /* .logo a:hover {
+    text-decoration: None;
+  } */
+
+
+  main {
+    padding: 0 20px 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .page-title {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    font-family: "Titillium Web", sans-serif;
+  }
+  
+  /*
+  CSS for blog
+  */
+  .blog-container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 560px;
+    border: 20px;
+    /* border-color: blue; */
+  }
+
+  .blog-container img{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+  }
+  .blog-container a{
+    color: var(--cg-black);
+    text-decoration: none;
+  }
+  .blog-container a:hover{
+    color: var(--cg-blue);
+  }
+  /*
+  CSS for vlog
+  */
+  .video-box{
+    width: 560px;
+    border: 20px;
+    border-color: blue;
+  }
+
+  .yt-video{
+    width: 560px;
+    height: 315px;
+  }
+
+  .project {
+    display: flex; /* Use flexbox to align image and description side by side */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; /* Vertically center the items */
+    margin: 20px 0;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  .project img {
+    flex-basis: 45%; /* Take up 45% of the available width */
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .project-details {
+    flex-basis: 45%; /* Take up 45% of the available width */
+    padding-left: 20px; /* Add space between the image and details */
+    text-align: left;
+  }
+  
+  .project-name {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .project-description {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .project-details a {
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .project-details a:hover {
+    text-decoration: underline;
+  }
+  /* CSS for home page */
+  
+  .about {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .about-image img {
+    max-width: 300px;
+    border-radius: 3px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+  }
+  
+  .about-text {
+    flex: 1;
+    margin-left: 20px;
+  }
+  .about-link{
+    color: var(--cg-black);
+  }
+  .about-link:hover {
+    font-weight: bolder;
+  }
+
+  .about-text h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  /* CSS for resume page */
+  
+
+  .button {
+    background-color: var(--cg-black);
+    border: none;
+    color: var(--cg-white);
+  
+    font-family: "Titillium Web", sans-serif;
+  
+    padding: 5px 7px;
+    text-align: center;
+  
+    border-radius: 2px;
+  }
+  
+  .button:hover {
+    background-color: var(--cg-blue);
+  }
+  .resume {
+    width: 90%;
+    max-width: 900px;
+    padding: 40px;
+    margin: 20px auto;
+    background-color: var(--cg-white);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: "Titillium Web", sans-serif;
+}
+
+.resume-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.resume-header h1 {
+    color: var(--cg-black);
+    margin-bottom: 10px;
+}
+
+.resume-section {
+    margin-bottom: 30px;
+}
+
+.resume-section h2 {
+    color: var(--cg-black);
+    border-bottom: 2px solid var(--cg-grey);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.resume-section h3 {
+    margin-bottom: 5px;
+    color: var(--cg-black);
+}
+
+.job, .project, .leadership, .award {
+    margin-bottom: 20px;
+}
+
+.job-info {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+  
+  /* CSS for contact form */
+  .contact-text{
+    text-align: center;
+  }
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: "Titillium Web", sans-serif;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+    font-family: "Titillium Web", sans-serif;
+  }
+  
+  /* Add some spacing to the form */
+  form {
+    width: 500px;
+    margin: 0 auto;
+  }
+  
+  /* CSS for footer */
+  
+  footer {
+    display: fixed;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+    font-family: "Titillium Web", sans-serif;
+    color: var(--cg-black);
+    text-align: center;
+    /* Debug border */
+    /* border: solid blue; */
+
+  }
