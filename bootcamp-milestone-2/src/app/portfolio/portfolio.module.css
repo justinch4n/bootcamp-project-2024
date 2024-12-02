@@ -1,0 +1,47 @@
+
+.project {
+    display: flex; /* Use flexbox to align image and description side by side */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; /* Vertically center the items */
+    margin: 20px 0;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  .project img {
+    flex-basis: 45%; /* Take up 45% of the available width */
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .projectDetails {
+    flex-basis: 45%; /* Take up 45% of the available width */
+    padding-left: 20px; /* Add space between the image and details */
+    text-align: left;
+  }
+  
+  .projectName {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .projectDescription {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .projectDetails a {
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .projectDetails a:hover {
+    text-decoration: underline;
+  }

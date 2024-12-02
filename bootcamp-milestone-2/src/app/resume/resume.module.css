@@ -1,0 +1,71 @@
+.button {
+    background-color: var(--cg-black);
+    border: none;
+    color: var(--cg-white);
+    font-family: var(--font-titillium-web);
+    padding: 5px 7px;
+    text-align: center;
+    border-radius: 2px;
+}
+  
+.button:hover {
+    background-color: var(--cg-blue);
+}
+
+.resume {
+    width: 90%;
+    max-width: 900px;
+    padding: 40px;
+    margin: 20px auto;
+    background-color: var(--cg-white);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: var(--font-titillium-web);
+}
+
+.resumeHeader {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.resumeHeader h1 {
+    color: var(--cg-black);
+    margin-bottom: 10px;
+}
+
+.resumeSection {
+    margin-bottom: 30px;
+}
+
+.resumeSection ul{
+    padding-left: 20px;
+    margin: 0; 
+}
+.resumeSection ul li {
+    list-style: disc;
+    padding: 2px 0;
+  }
+
+.resumeSection h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--cg-black);
+    border-bottom: 2px solid var(--cg-grey);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.resumeSection h3 {
+    font-size: 1.17em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--cg-black);
+}
+
+.job, .project, .leadership, .award {
+    margin-bottom: 20px;
+}
+
+.jobInfo {
+    font-style: italic;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,23 @@
+.blogPage {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .blogImg img {
+    max-width: 300px;
+    border-radius: 3px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+  }
+  
+  .blogText {
+    flex: 1;
+    margin-left: 20px;
+    font-size: larger;
+  }
+
