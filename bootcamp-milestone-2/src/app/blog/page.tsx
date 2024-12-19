@@ -1,7 +1,5 @@
-//import blogs from '@/app/static/blogData'
 import BlogPreview from '@/components/blogPreview';
 import React from 'react';
-//import style from './blog.module.css'
 import connectDB from "@/database/db";
 import BlogModel from "@/database/blogSchema"
 
