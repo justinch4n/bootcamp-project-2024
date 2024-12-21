@@ -1,0 +1,32 @@
+.comment {
+    display: block; /* Ensures the container takes up full width if possible */
+    margin: 10px 0; 
+    padding: 10px; 
+    width: 100%; /* Ensure it spans full width */
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .commentUser {
+    margin-left: 5%;
+    width: 300px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: larger;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+  }
+  
+  .commentMessage {
+    flex: 1;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: medium;
+  }
+
+  .date{
+    margin-left: 5%;
+    font-size: smaller;
+    color: darkgray;
+  }

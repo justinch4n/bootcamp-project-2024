@@ -9,8 +9,20 @@ type Blog = {
     image: string;
     image_alt: string;
     slug: string;
-    comments?: any[]; // Update this if you have a defined type for comments
+    comments?: IComment[];
 };
+
+export type IComment = {
+    user: string;
+    comment: string;
+    time: Date;
+}
+
+const commentSchema = new Schema<IComment>({
+    user: {type: String, required: true },
+    comment: { type: String, required: true },
+    time: { type: Date, required: true, default: Date.now },
+})
 
 // Mongoose schema
 const blogSchema = new Schema<Blog>({
@@ -21,7 +33,7 @@ const blogSchema = new Schema<Blog>({
     image: { type: String, required: true },
     image_alt: { type: String, required: true },
     slug: { type: String, required: true },
-    comments: { type: Array, required: false, default: [] }, // Optional field
+    comments: { type: Array, required: false, default: [] },
 });
 
 // Mongoose model
