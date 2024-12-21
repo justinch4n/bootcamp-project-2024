@@ -5,6 +5,7 @@ import connectDB from "@/database/db";
 import BlogModel from "@/database/blogSchema";
 import Comment from '@/components/comment';
 import { IComment } from "@/database/blogSchema";
+import CommentForm from "@/components/commentForm";
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
   await connectDB();
@@ -41,6 +42,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           <Comment key={idx} comment={comment} />
         ))) : (<p>No comments yet.</p> )}
       </div>
+      <CommentForm slug={params.slug} />
     </main>
   );
 }
