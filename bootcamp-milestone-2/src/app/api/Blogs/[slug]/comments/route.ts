@@ -2,7 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/database/db";
 import BlogModel from "@/database/blogSchema";
 
-export async function POST(req: NextRequest, { params }: { params: { slug: string } }) {
+interface Params {
+  params: { slug: string };
+}
+
+export async function POST(req: NextRequest, { params }: Params) {
   console.log("POST request received");
   await connectDB();
 

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function BlogPreview(props: Blog) {
-  const blog = props._doc || props; // Use _doc if it exists, fallback to props for safety
+  const blog = props._doc || props; 
 
   return (
     <div className={style.blogCard}>

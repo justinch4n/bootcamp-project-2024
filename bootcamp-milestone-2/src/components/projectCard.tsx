@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function ProjectCard(props: Project) {
-    const project = props._doc || props; // Use _doc if it exists, fallback to props for safety
+    const project = props._doc || props; 
 
   return (
     <div className={style.project}>
