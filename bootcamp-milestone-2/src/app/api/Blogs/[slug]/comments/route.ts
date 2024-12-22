@@ -2,15 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/database/db";
 import BlogModel from "@/database/blogSchema";
 
-interface Params {
-  params: { slug: string };
-}
-
-export async function POST(req: NextRequest, { params }: Params) {
+export async function POST(req: NextRequest, context: { params: { slug: string } }) {
   console.log("POST request received");
   await connectDB();
 
-  const { slug } = params;
+  const { slug } = context.params;
   console.log("Slug:", slug);
 
   try {
