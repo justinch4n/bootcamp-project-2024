@@ -1,11 +1,11 @@
 import React from "react";
 import style from "./blogPreview.module.css";
-import type { Blog } from "@/database/blogSchema";
+import Blog from "@/database/blogSchema"; // Import the default-exported Blog model
 import Link from "next/link";
 import Image from "next/image";
 
-export default function BlogPreview(props: Blog) {
-  const blog = props._doc || props; 
+export default function BlogPreview(props: any) {
+  const blog = props._doc || props;
 
   return (
     <div className={style.blogCard}>
@@ -14,20 +14,26 @@ export default function BlogPreview(props: Blog) {
         <div className={style.blogContent}>
           <div className={style.blogImage}>
             <Image
-              src={blog.image?.startsWith('/') ? blog.image : `/${blog.image || 'media/default.jpg'}`}
-              alt={blog.imageAlt || 'Default blog image'}
+              src={
+                blog.image?.startsWith("/")
+                  ? blog.image
+                  : `/${blog.image || "media/default.jpg"}`
+              }
+              alt={blog.imageAlt || "Default blog image"}
               width={500}
               height={300}
               style={{
-                maxWidth: '100%',
-                height: 'auto',
-                objectFit: 'cover',
+                maxWidth: "100%",
+                height: "auto",
+                objectFit: "cover",
               }}
             />
           </div>
           <div className={style.blogInfo}>
             <p className={style.blogDescription}>{blog.caption}</p>
-            <p className={style.blogDate}>{new Date(blog.date).toLocaleDateString()}</p>
+            <p className={style.blogDate}>
+              {new Date(blog.date).toLocaleDateString()}
+            </p>
           </div>
         </div>
       </Link>

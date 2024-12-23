@@ -5,27 +5,32 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function ProjectCard(props: Project) {
-    const project = props._doc || props; 
+  const {
+    image = 'media/default.jpg', // Fallback to default image
+    image_alt = 'Default project image',
+    title = 'Untitled Project',
+    description = 'No description available.',
+    link = '#', // Default to a placeholder link
+  } = props;
 
   return (
     <div className={style.project}>
-        <Image
-            src={project.image?.startsWith('/') ? project.image : `/${project.image || 'media/default.jpg'}`}
-            alt={project.imageAlt || 'Default project image'}
-            width={400}
-            height={400}
-            style={{
-            maxWidth: '100%',
-            height: 'auto',
-            objectFit: 'cover',
-            }}
-        />
-        
-        <div className={style.projectDetails}>
-            <p className={style.projectName}>{project.title}</p>
-            <p className={style.projectDescription}>{project.description}</p>
-            <Link href={project.link}>Learn More</Link>
-        </div>
+      <Image
+        src={image.startsWith('/') ? image : `/${image}`}
+        alt={image_alt}
+        width={400}
+        height={400}
+        style={{
+          maxWidth: '100%',
+          height: 'auto',
+          objectFit: 'cover',
+        }}
+      />
+      <div className={style.projectDetails}>
+        <p className={style.projectName}>{title}</p>
+        <p className={style.projectDescription}>{description}</p>
+        <Link href={link}>Learn More</Link>
+      </div>
     </div>
   );
 }

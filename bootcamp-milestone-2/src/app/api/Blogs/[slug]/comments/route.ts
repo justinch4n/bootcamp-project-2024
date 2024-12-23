@@ -1,35 +1,54 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/database/db";
-import BlogModel from "@/database/blogSchema";
+import Blog from "@/database/blogSchema";
 
-export async function POST(req: NextRequest, context: { params: { slug: string } }) {
-  console.log("POST request received");
+interface CommentRequest {
+  user: string;
+  content: string;
+}
+
+export async function POST(req: NextRequest) {
   await connectDB();
 
-  const { slug } = context.params;
-  console.log("Slug:", slug);
-
   try {
-    const { user, comment } = await req.json();
-    console.log("Received data:", { user, comment });
+    // Extract the slug from the request URL
+    const slug = req.nextUrl.pathname.split("/blogs/")[1]?.split("/")[0];
 
-    if (!user || !comment) {
-      return NextResponse.json({ error: "Invalid input" }, { status: 400 });
+    if (!slug) {
+      return NextResponse.json(
+        { error: "Slug is missing from the request URL." },
+        { status: 400 }
+      );
     }
 
-    const blog = await BlogModel.findOneAndUpdate(
-      { slug },
-      { $push: { comments: { user, comment, time: new Date() } } },
-      { new: true }
+    const body: CommentRequest = await req.json();
+
+    // Validate request body
+    if (!body.user || !body.content) {
+      return NextResponse.json(
+        { error: "User and content are required" },
+        { status: 400 }
+      );
+    }
+
+    // Find the blog post by slug
+    const blog = await Blog.findOne({ slug }).orFail();
+
+    // Add the comment
+    blog.comments.push({ user: body.user, comment: body.content, date: new Date() });
+    await blog.save();
+
+    // Respond with the updated comments
+    return NextResponse.json(blog.comments, { status: 200 });
+  } catch (error: unknown) {
+    console.error("Error saving comment:", error);
+
+    const status = error instanceof Error && error.name === "DocumentNotFoundError" ? 404 : 500;
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+
+    return NextResponse.json(
+      { error: errorMessage },
+      { status }
     );
-
-    if (!blog) {
-      return NextResponse.json({ error: "Blog not found" }, { status: 404 });
-    }
-
-    return NextResponse.json({ success: true, blog });
-  } catch (error) {
-    console.error("Error:", error);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

@@ -8,16 +8,15 @@ import { IComment } from "@/database/blogSchema";
 import CommentForm from "@/components/commentForm";
 
 type BlogPostProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>; // Use Promise to match expected type
 };
 
 export default async function BlogPost({ params }: BlogPostProps) {
+  // Await params to resolve its Promise
   const { slug } = await params;
 
-  // Connect to the database
   await connectDB();
 
-  // Fetch the blog by slug
   const blog = await BlogModel.findOne({ slug }).exec();
 
   if (!blog) {
