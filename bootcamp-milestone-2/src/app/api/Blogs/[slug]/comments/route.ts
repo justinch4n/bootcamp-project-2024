@@ -11,8 +11,7 @@ export async function POST(req: NextRequest) {
   await connectDB();
 
   try {
-    // Extract the slug from the request URL
-    const slug = req.nextUrl.pathname.split("/blogs/")[1]?.split("/")[0];
+    const slug = req.nextUrl.pathname.split("/api/Blogs/")[1]?.split("/")[0];
 
     if (!slug) {
       return NextResponse.json(
@@ -23,7 +22,6 @@ export async function POST(req: NextRequest) {
 
     const body: CommentRequest = await req.json();
 
-    // Validate request body
     if (!body.user || !body.content) {
       return NextResponse.json(
         { error: "User and content are required" },
@@ -31,24 +29,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Find the blog post by slug
-    const blog = await Blog.findOne({ slug }).orFail();
+    await Blog.updateOne(
+      { slug },
+      { $push: { comments: { user: body.user, comment: body.content, date: new Date() } } }
+    );
 
-    // Add the comment
-    blog.comments.push({ user: body.user, comment: body.content, date: new Date() });
-    await blog.save();
-
-    // Respond with the updated comments
-    return NextResponse.json(blog.comments, { status: 200 });
+    return NextResponse.json({ message: "Comment added successfully!" }, { status: 201 });
   } catch (error: unknown) {
     console.error("Error saving comment:", error);
-
-    const status = error instanceof Error && error.name === "DocumentNotFoundError" ? 404 : 500;
-    const errorMessage = error instanceof Error ? error.message : "Unknown error";
-
     return NextResponse.json(
-      { error: errorMessage },
-      { status }
+      { error: "Internal Server Error." },
+      { status: 500 }
     );
   }
 }

@@ -3,14 +3,14 @@ import styles from "./comment.module.css"
 type IComment = {
     user: string;
     comment: string;
-    time: Date;
+    date: Date;
   };
   
   type CommentProps = {
     comment: IComment;
   };
   
-  function parseCommentTime(time: Date) {
+  function parseCommentTime(date: Date) {
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
       month: "long",
@@ -19,7 +19,7 @@ type IComment = {
       minute: "numeric",
       hour12: true,
     };
-    return new Date(time).toLocaleString("en-US", options);
+    return new Date(date).toLocaleString("en-US", options);
   }
   
   function Comment({ comment }: CommentProps) {
@@ -28,7 +28,7 @@ type IComment = {
         <h4 className={styles.commentUser}>{comment.user}</h4>
         <p className={styles.commentMessage}>{comment.comment}</p>
         <span className={styles.date}>
-          {parseCommentTime(comment.time)}
+          {parseCommentTime(comment.date)}
         </span>
       </div>
     );

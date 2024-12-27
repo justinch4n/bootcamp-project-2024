@@ -11,21 +11,20 @@ export default function CommentForm({ slug }: { slug: string }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("");
-
+  
     try {
       const res = await fetch(`/api/Blogs/${slug}/comments`, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ user, comment }),
-});
-
+        body: JSON.stringify({ user, content: comment }),
+      });
+  
       const data = await res.json();
       if (!res.ok) {
         throw new Error(data.error || "Failed to post comment");
       }
-
       setStatus("Comment added successfully!");
       setUser("");
       setComment("");
@@ -33,6 +32,7 @@ export default function CommentForm({ slug }: { slug: string }) {
       setStatus(`Error: ${error.message}`);
     }
   };
+  
 
   return (
     <form onSubmit={handleSubmit} className={styles.commentForm}>

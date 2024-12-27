@@ -8,11 +8,10 @@ import { IComment } from "@/database/blogSchema";
 import CommentForm from "@/components/commentForm";
 
 type BlogPostProps = {
-  params: Promise<{ slug: string }>; // Use Promise to match expected type
+  params: Promise<{ slug: string }>;
 };
 
 export default async function BlogPost({ params }: BlogPostProps) {
-  // Await params to resolve its Promise
   const { slug } = await params;
 
   await connectDB();
@@ -37,8 +36,8 @@ export default async function BlogPost({ params }: BlogPostProps) {
       <div className={styles.blogPage}>
         <div className={styles.blogImg}>
           <Image
-            src={blog.image || "/media/default.jpg"} // Fallback to default image
-            alt={blog.imageAlt || "Default image"} // Fallback to default alt text
+            src={blog.image || "/media/default.jpg"} 
+            alt={blog.imageAlt || "Default image"} 
             width={800}
             height={600}
           />
