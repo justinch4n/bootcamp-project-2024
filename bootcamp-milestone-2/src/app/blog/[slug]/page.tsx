@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import styles from "../blogPages.module.css";
+import styles from "./blogPages.module.css";
 import connectDB from "@/database/db";
 import BlogModel from "@/database/blogSchema";
 import Comment from "@/components/comment";

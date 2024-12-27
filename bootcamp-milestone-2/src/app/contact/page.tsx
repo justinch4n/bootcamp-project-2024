@@ -21,7 +21,7 @@ export default function ContactPage() {
     e.preventDefault();
     setStatus("");
 
-    if (!formData.name || !formData.comments) {
+    if (!formData.name || !formData.comments || !formData.handle) {
       setStatus("Error: Please fill out all required fields.");
       return;
     }
