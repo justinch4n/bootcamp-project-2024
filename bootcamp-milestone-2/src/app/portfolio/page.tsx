@@ -1,38 +1,82 @@
-import ProjectCard from '@/components/projectCard';
+// app/portfolio/page.tsx
 import React from 'react';
+import ProjectCard from '@/components/projectCard';
+import CommentForm from '@/components/CommentForm'; // Import the CommentForm component
 import connectDB from "@/database/db";
-import ProjectModel from "@/database/projectSchema"
+import ProjectModel from "@/database/projectSchema";
+import styles from './portfolio.module.css';
 
-async function getProjects() {
+
+interface IProject {
+  _id: string;
+  image: string;
+  image_alt: string;
+  title: string;
+  description: string;
+  link: string;
+  comments: { user: string; content: string; createdAt: Date }[];
+}
+
+const PortfolioPage = async (): Promise<JSX.Element> => {
   await connectDB();
 
+  let projects: IProject[] = [];
+
   try {
-    const projects = await ProjectModel.find().sort({ date: -1 });
-    return projects.map((project) => ({
-      _id: project._id,
-      image: project.image || 'media/default.jpg',
-      image_alt: project.image_alt || 'Default project image',
-      title: project.title || 'Untitled Project',
-      description: project.description || 'No description available.',
-      link: project.link || '#',
-    }));
-  } catch (err) {
-    console.error("Error fetching projects:", err);
-    return [];
+    projects = await ProjectModel.find().sort({ date: -1 });
+
+    projects = projects.map((project) => {
+      const projectObject = project.toObject();
+      const comments = projectObject.comments || [];
+
+      return {
+        _id: projectObject._id.toString(),
+        image: projectObject.image || 'media/default.jpg',
+        image_alt: projectObject.image_alt || 'Default project image',
+        title: projectObject.title || 'Untitled Project',
+        description: projectObject.description || 'No description available.',
+        link: projectObject.link || '#',
+        comments: comments,
+      };
+    });
+  } catch (error) {
+    console.error("Error fetching projects:", error);
   }
-}
 
-
-export default async function Project() {
-  const projects = await getProjects();
   return (
-    <main>
-      <h1 className="pageTitle">Projects</h1>
-      {projects && projects.length > 0 ? (
-        projects.map((project) => <ProjectCard key={project._id} {...project} />)
-      ) : (
-        <p>No projects yet...<br />Come back later!</p>
-      )}
-    </main>
+    <div>
+      <h1 className='pageTitle'>Portfolio</h1>
+      <div>
+        {projects.length > 0 ? (
+          projects.map((project) => (
+            <div key={project._id}>
+              <ProjectCard project={project} />
+              <div className={styles.commentsSection}>
+
+                <h3 className={styles.commentTitle}>Comments</h3>
+                {project.comments.length > 0 ? (
+                project.comments.map((comment, index) => (
+                <div key={index} className={styles.comment}>
+                  <p><strong>{comment.user || "Anonymous"}</strong></p> {/* Include the user name */}
+                  <p>{comment.comment}</p> {/* Access "comment" field */}
+                  <small>{new Date(comment.date).toLocaleString()}</small> {/* Access "date" field */}
+                </div>
+                ))
+                ) : (
+                <p className={styles.comment}>No comments yet.</p>
+                )}
+
+                {/* Comment Form */}
+                <CommentForm slug={project._id} />
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No projects available</p>
+        )}
+      </div>
+    </div>
   );
-}
+};
+
+export default PortfolioPage;

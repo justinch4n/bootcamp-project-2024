@@ -1,6 +1,6 @@
 
 .project {
-    display: flex; /* Use flexbox to align image and description side by side */
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center; /* Vertically center the items */

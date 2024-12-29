@@ -1,23 +1,27 @@
-import React from "react";
-import style from "./projectCard.module.css";
-import type { Project } from "@/database/projectSchema";
-import Link from "next/link";
-import Image from "next/image";
+// projectCard.tsx
+import React from 'react';
+import style from './projectCard.module.css';
+import Image from 'next/image';
+import Link from 'next/link';
 
-export default function ProjectCard(props: Project) {
-  const {
-    image = 'media/default.jpg', // Fallback to default image
-    image_alt = 'Default project image',
-    title = 'Untitled Project',
-    description = 'No description available.',
-    link = '#', // Default to a placeholder link
-  } = props;
+interface ProjectCardProps {
+  project: {
+    _id: string;
+    image: string;
+    image_alt: string;
+    title: string;
+    description: string;
+    link: string;
+    comments: { user: string; comment: string; date: Date }[];
+  };
+}
 
+const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     <div className={style.project}>
       <Image
-        src={image.startsWith('/') ? image : `/${image}`}
-        alt={image_alt}
+        src={project.image}
+        alt={project.image_alt}
         width={400}
         height={400}
         style={{
@@ -27,10 +31,12 @@ export default function ProjectCard(props: Project) {
         }}
       />
       <div className={style.projectDetails}>
-        <p className={style.projectName}>{title}</p>
-        <p className={style.projectDescription}>{description}</p>
-        <Link href={link}>Learn More</Link>
+        <p className={style.projectName}>{project.title}</p>
+        <p className={style.projectDescription}>{project.description}</p>
+        <Link href={project.link}>Learn More</Link>
       </div>
     </div>
   );
-}
+};
+
+export default ProjectCard;

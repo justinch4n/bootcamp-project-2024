@@ -45,3 +45,27 @@
   .projectDetails a:hover {
     text-decoration: underline;
   }
+
+.commentsSection {
+  margin: 50px 25%;
+  padding-top: 1rem;
+}
+
+.comment {
+  display: block;
+  margin: 10px 0; 
+  padding: 10px; 
+  background-color: #fff;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
+.comment small {
+  color: #555;
+  font-size: 0.875rem;
+}
+
+.commentTitle{
+  font-size: x-large;
+  font-weight: bold;
+}
+
+
