@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./blogPreview.module.css";
-import Blog from "@/database/blogSchema"; // Import the default-exported Blog model
 import Link from "next/link";
 import Image from "next/image";
 

@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/database/db";
-import Blog from "@/database/blogSchema";
+import ProjectModel from "@/database/projectSchema";
 
 export async function POST(req: NextRequest) {
   await connectDB();
 
   try {
-    const slug = req.nextUrl.pathname.split("/api/Blogs/")[1]?.split("/")[0];
-    if (!slug) {
+    const projectId = req.nextUrl.searchParams.get("id");
+    if (!projectId) {
       return NextResponse.json(
-        { error: "Slug is missing from the request URL." },
+        { error: "Project ID is required." },
         { status: 400 }
       );
     }
@@ -22,22 +22,25 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const updatedBlog = await Blog.findOneAndUpdate(
-      { slug },
+    const updatedProject = await ProjectModel.findByIdAndUpdate(
+      projectId,
       { $push: { comments: { user, comment, date: new Date() } } },
-      { new: true } // Return the updated document
+      { new: true }
     );
 
-    if (!updatedBlog) {
+    if (!updatedProject) {
       return NextResponse.json(
-        { error: "Blog not found for the provided slug." },
+        { error: "Project not found for the provided ID." },
         { status: 404 }
       );
     }
 
-    return NextResponse.json({ message: "Comment added successfully!", blog: updatedBlog }, { status: 201 });
+    return NextResponse.json(
+      { message: "Comment added successfully!", project: updatedProject },
+      { status: 201 }
+    );
   } catch (error) {
-    console.error("Error saving comment:", error);
+    console.error("Error handling POST request:", error);
     return NextResponse.json(
       { error: "Internal Server Error." },
       { status: 500 }

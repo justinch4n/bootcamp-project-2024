@@ -9,7 +9,7 @@ type IParams = {
 }
 
 export async function GET(req: NextRequest, { params }: IParams) {
-    await connectDB(); // function from db.ts before
+    await connectDB(); 
     const {slug} = await params;
 
     try {

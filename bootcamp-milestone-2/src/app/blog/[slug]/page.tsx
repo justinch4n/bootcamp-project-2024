@@ -56,7 +56,8 @@ export default async function BlogPost({ params }: BlogPostProps) {
           <p>No comments yet.</p>
         )}
       </div>
-      <CommentForm slug={slug} />
+      <CommentForm id={slug} type="blog" />
+
     </main>
   );
 }

@@ -1,24 +1,23 @@
 import { Metadata } from "next";
-import localFont from "next/font/local";  // Import next/font/local
+import localFont from "next/font/local"; 
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer"
-import "./globals.css";  // Global CSS
+import "./globals.css";  
 
-// Using Titillium Web font files
 const titilliumWeb = localFont({
   src: [
     {
-      path: './fonts/TitilliumWeb-Regular.woff',  // Adjust the path to match the actual file location
+      path: './fonts/TitilliumWeb-Regular.woff',  
       weight: '400',
       style: 'normal',
     },
     {
-      path: './fonts/TitilliumWeb-Bold.woff',  // If you have multiple font weights
+      path: './fonts/TitilliumWeb-Bold.woff',  
       weight: '700',
       style: 'normal',
     }
   ],
-  variable: '--font-titillium-web',  // Create a custom variable for this font
+  variable: '--font-titillium-web',  
 });
 
 export const metadata: Metadata = {

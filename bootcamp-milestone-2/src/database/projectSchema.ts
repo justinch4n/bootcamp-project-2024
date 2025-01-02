@@ -1,13 +1,11 @@
 import mongoose, { Schema, model, models, Document } from "mongoose";
 
-// Interface for the comment
 interface IComment {
   user: string;
   comment: string;
   date: Date;
 }
 
-// Extend the Document interface from Mongoose for the project
 interface IProject extends Document {
   _id: string;
   image: string;
@@ -15,17 +13,15 @@ interface IProject extends Document {
   title: string;
   description: string;
   link: string;
-  comments: IComment[]; // Use IComment type here for clarity
+  comments: IComment[]; 
 }
 
-// Comment schema
 const commentSchema = new Schema<IComment>({
   user: { type: String, required: true },
   comment: { type: String, required: true },
   date: { type: Date, default: Date.now },
 });
 
-// Project schema
 const projectSchema = new Schema<IProject>({
   title: { type: String, required: true },
   description: { type: String, required: true },
@@ -35,7 +31,6 @@ const projectSchema = new Schema<IProject>({
   comments: [commentSchema], 
 });
 
-// Model creation (either fetch from models or create a new one)
 const Project = models.Project || model<IProject>("Project", projectSchema);
 
 export default Project;

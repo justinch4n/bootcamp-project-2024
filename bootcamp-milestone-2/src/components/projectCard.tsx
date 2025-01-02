@@ -1,4 +1,3 @@
-// projectCard.tsx
 import React from 'react';
 import style from './projectCard.module.css';
 import Image from 'next/image';

@@ -1,4 +1,9 @@
 
+.projectCommentContainer{
+  width: 95%;
+  margin-left: 2.5%;
+}
+
 .project {
     display: flex; /* Use flexbox to align image and description side by side */
     flex-direction: row;

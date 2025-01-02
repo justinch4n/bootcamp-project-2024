@@ -27,10 +27,8 @@ const PortfolioPage = async (): Promise<JSX.Element> => {
   let projects: IProject[] = [];
 
   try {
-    // Fetch projects from the database
     const results = await ProjectModel.find().sort({ date: -1 });
 
-    // Map the results to ensure consistent structure
     projects = results.map((project) => ({
       _id: project._id.toString(),
       image: project.image || "media/default.jpg",
@@ -50,7 +48,7 @@ const PortfolioPage = async (): Promise<JSX.Element> => {
       <div>
         {projects.length > 0 ? (
           projects.map((project) => (
-            <div key={project._id}>
+            <div className={styles.projectCommentContainer} key={project._id}>
               <ProjectCard project={project} />
               <div className={styles.commentsSection}>
                 <h3 className={styles.commentTitle}>Comments</h3>
@@ -65,9 +63,10 @@ const PortfolioPage = async (): Promise<JSX.Element> => {
                     </div>
                   ))
                 ) : (
-                  <p className={styles.comment}>No comments yet.</p>
+                  <p className={styles.comment}>
+                  No comments yet.</p>
                 )}
-                <CommentForm slug={project._id} />
+                <CommentForm id={project._id} type="project" />
               </div>
             </div>
           ))
